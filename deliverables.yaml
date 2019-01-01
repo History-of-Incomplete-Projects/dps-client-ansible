@@ -1,0 +1,14 @@
+---
+  - name: Get Aptitude Installed
+    hosts: hosts
+    become: false
+
+    roles:
+      - apt-installed
+
+  - name: Get Pip Installed
+    hosts: hosts
+    become: false
+
+    roles:
+      - pip-installed
