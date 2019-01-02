@@ -1,14 +1,14 @@
 ---
-  - name: Get Aptitude Installed
-    hosts: hosts
+
+  - name: Get Aptitude and Pip Installed
+    hosts: localhost
     become: false
 
-    roles:
-      - apt-installed
+    tasks:
+      - name: Check if expect_apts is set
+        set_fact:
+          expect_apts: "[]"
+        when: expect_apts is not defined
 
-  - name: Get Pip Installed
-    hosts: hosts
-    become: false
-
     roles:
-      - pip-installed
+      - get-installed

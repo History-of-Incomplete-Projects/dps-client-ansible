@@ -1,0 +1,33 @@
+---
+  - name: Download the scripts from GitHub
+    import_tasks: install.yaml
+
+  - name: make downloaded scripts runnable
+    shell: "chmod +x {{ dps_home }}/{{ item }}.sh"
+    with_items:
+      - get-apt-installed
+      - get-pip-installed
+  
+  - name: Create log file
+    file:
+      dest: "{{ dps_log_path }}"
+      state: touch
+
+  - name: Execute download scripts
+    include_tasks: execute.yaml
+    with_items:
+      "{{ expect_apts }}"
+  
+  - name: cat log file
+    shell: "cat {{ dps_log_path }}"
+    register: log
+
+  - name: print contents of log file
+    debug:
+      msg: "{{ log.stdout_lines }}"
+  
+  - name: Remove the output files from machine after usage
+    import_tasks: clean.yaml
+  
+  - name: Remove the scripts from machine after usage
+    import_tasks: uninstall.yaml

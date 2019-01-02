@@ -1,0 +1,1 @@
+ansible-playbook -c local -i hosts/HOST -e='{"expect_apts": ["loool", "accountsservice/bionic,now 0.6.45-1ubuntu1 amd64 [installed]"]}' deliverables.yam

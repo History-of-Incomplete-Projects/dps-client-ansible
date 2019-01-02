@@ -1,0 +1,24 @@
+---
+  - name: Run script to get all aptitude installed 
+    script: '/{{ dps_home }}/get-apt-installed.sh "{{ item }}"'
+    register: out
+
+  - name: Set comparsion variable
+    set_fact:
+      searched_apt_exists: "'{{ item }}': {{ out.stdout_lines }}"
+  
+  - name: Log the outputs of the script
+    debug:
+      msg: "{{ searched_apt_exists }}"
+  
+  - name: Append to log file
+    lineinfile:
+      dest: "{{ dps_log_path }}"
+      line: "{{ searched_apt_exists }}"
+      insertafter: EOF
+
+  # - name: Run script to get all pip installed 
+  #   script: "/{{ dps_home }}/get-pip-installed.sh"
+  #   register: out
+  #   set_fact:
+  #     exists: "{{ out.stdout_lines }}"

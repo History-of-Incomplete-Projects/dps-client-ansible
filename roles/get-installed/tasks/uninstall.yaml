@@ -1,0 +1,5 @@
+---
+  - name: Remove files and directory
+    file:
+      path: "{{ dps_home }}"
+      state: absent

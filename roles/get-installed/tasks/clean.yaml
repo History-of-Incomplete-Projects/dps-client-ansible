@@ -1,0 +1,3 @@
+---
+  - name: Remove output files
+    shell: 'find {{ dps_home }} -type f  ! -name "*.?*" -delete'
