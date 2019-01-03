@@ -1,0 +1,7 @@
+---
+  - name: Install scripts to machine from GitHub
+    git:
+      repo: https://github.com/independent-projects/deva-path-specs.git
+      dest: "{{ dps_home }}"
+      version: 1.1.1
+      force: yes
