@@ -12,11 +12,24 @@
     file:
       dest: "{{ dps_log_path }}"
       state: touch
+    
+  - name: Set current target library
+    set_fact: 
+      current_library: "apt"
 
   - name: Execute download scripts
     include_tasks: execute.yaml
     with_items:
       "{{ expect_apts }}"
+    
+  - name: Set current target library
+    set_fact: 
+      current_library: "pip"
+
+  - name: Execute download scripts
+    include_tasks: execute.yaml
+    with_items:
+      "{{ expect_pips }}"
   
   - name: cat log file
     shell: "cat {{ dps_log_path }}"

@@ -1,4 +1,4 @@
 ---
 dps_git_branch: "master"
 dps_home: /tmp/deva-path-specs
-dps_log_path: "{{ dps_home }}/ansible_log"
+dps_log_path: "/tmp/deva-path-specs/ansible_log"
