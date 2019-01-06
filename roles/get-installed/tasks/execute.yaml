@@ -1,12 +1,12 @@
 ---
   - name: Run script to get all aptitude installed 
-    command: "sh {{ dps_home }}/get-apt-installed.sh {{ item }}"
+    command: 'sh {{ dps_home }}/get-apt-installed.sh "{{ item }}"'
     register: apt_out
     become: true
     when: current_library == "apt"
 
   - name: Run script to get all pip installed 
-    command: "sh {{ dps_home }}/get-pip-installed.sh {{ item }}"
+    command: 'sh {{ dps_home }}/get-pip-installed.sh "{{ item }}"'
     register: pip_out
     become: true
     when: current_library == "pip"
